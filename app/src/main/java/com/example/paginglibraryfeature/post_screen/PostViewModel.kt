@@ -14,7 +14,7 @@ class PostViewModel: ViewModel() {
 
     init {
         val config = PagedList.Config.Builder()
-            .setPageSize(30)
+            .setPageSize(10)
             .setEnablePlaceholders(false)
             .build()
         postLiveData = initializedPagedListBuilder(config).build()
