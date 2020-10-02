@@ -1,6 +1,6 @@
-package com.example.paginglibraryfeature.data
+package com.example.paginglibraryfeature.api_data
 
-import com.example.paginglibraryfeature.model.RedditApiResponse
+import com.example.paginglibraryfeature.api_model.RedditApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

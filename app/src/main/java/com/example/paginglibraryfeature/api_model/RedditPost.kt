@@ -1,4 +1,4 @@
-package com.example.paginglibraryfeature.model
+package com.example.paginglibraryfeature.api_model
 
 import com.google.gson.annotations.SerializedName
 

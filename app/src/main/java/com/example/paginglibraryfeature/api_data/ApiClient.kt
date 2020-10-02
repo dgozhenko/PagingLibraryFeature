@@ -1,6 +1,6 @@
-package com.example.paginglibraryfeature.data
+package com.example.paginglibraryfeature.api_data
 
-import com.example.paginglibraryfeature.data.ApiEndPoint.BASE_URL
+import com.example.paginglibraryfeature.api_data.ApiEndPoint.BASE_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

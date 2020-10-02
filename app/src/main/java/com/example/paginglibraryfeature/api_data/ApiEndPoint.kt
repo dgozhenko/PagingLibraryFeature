@@ -1,4 +1,4 @@
-package com.example.paginglibraryfeature.data
+package com.example.paginglibraryfeature.api_data
 
 object ApiEndPoint {
     const val BASE_URL ="https://www.reddit.com/"
