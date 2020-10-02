@@ -21,19 +21,20 @@ class ApiClient {
             .retryOnConnectionFailure(true)
             .addInterceptor(loggingInterceptor)
             .build()
-    }
 
-   private var retrofit: Retrofit? = null
 
-    fun getClient(): Retrofit {
-        when (retrofit) {
-            null -> retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .client(okHttpClient)
-                .build()
+        private var retrofit: Retrofit? = null
+
+        fun getClient(): Retrofit {
+            when (retrofit) {
+                null -> retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                    .client(okHttpClient)
+                    .build()
+            }
+            return retrofit as Retrofit
         }
-        return retrofit as Retrofit
     }
 }
