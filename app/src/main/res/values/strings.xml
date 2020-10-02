@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PagingLibraryFeature</string>
+    <string name="staricon">starIcon</string>
+    <string name="comment_icon">Comment Icon</string>
 </resources>
