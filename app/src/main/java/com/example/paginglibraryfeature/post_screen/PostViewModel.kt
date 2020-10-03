@@ -20,7 +20,7 @@ class PostViewModel: ViewModel() {
         postLiveData = initializedPagedListBuilder(config).build()
     }
 
-    fun getPosts(): LiveData<PagedList<RedditPost>> = postLiveData
+
 
     private fun initializedPagedListBuilder(config: PagedList.Config):
             LivePagedListBuilder<String, RedditPost> {

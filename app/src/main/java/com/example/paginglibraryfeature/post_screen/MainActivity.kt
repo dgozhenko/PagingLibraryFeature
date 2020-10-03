@@ -1,15 +1,15 @@
-package com.example.paginglibraryfeature
+package com.example.paginglibraryfeature.post_screen
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.paginglibraryfeature.post_screen.PostViewModel
-import com.example.paginglibraryfeature.post_screen.RedditPostAdapter
+import com.example.paginglibraryfeature.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_recycler_view.*
 
@@ -23,13 +23,21 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
+        swipeToRefresh.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        swipeToRefresh.setColorSchemeColors(Color.WHITE)
+
+        swipeToRefresh.setOnRefreshListener {
+            observeLiveData()
+            initializeList()
+            swipeToRefresh.isRefreshing = false
+        }
 
         observeLiveData()
         initializeList()
     }
 
     private fun observeLiveData() {
-        postViewModel.postLiveData.observe(this, Observer {
+        postViewModel.postLiveData.observe(this, {
             redditPostAdapter.submitList(it)
         })
     }
