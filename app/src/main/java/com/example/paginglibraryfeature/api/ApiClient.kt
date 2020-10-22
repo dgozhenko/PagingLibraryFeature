@@ -1,6 +1,5 @@
-package com.example.paginglibraryfeature.api_data
+package com.example.paginglibraryfeature.api
 
-import com.example.paginglibraryfeature.api_data.ApiEndPoint.BASE_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,16 +9,16 @@ import java.util.concurrent.TimeUnit
 
 class ApiClient {
     companion object {
-        private val loggingInterceptor = HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        }
+        private const val BASE_URL ="https://www.reddit.com/"
 
         private val okHttpClient = OkHttpClient().newBuilder()
             .connectTimeout(2, TimeUnit.MINUTES)
             .readTimeout(2, TimeUnit.MINUTES)
             .writeTimeout(2, TimeUnit.MINUTES)
             .retryOnConnectionFailure(true)
-            .addInterceptor(loggingInterceptor)
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
             .build()
 
 

@@ -1,4 +1,4 @@
-package com.example.paginglibraryfeature.post_screen
+package com.example.paginglibraryfeature.ui.posts
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -6,23 +6,22 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.paginglibraryfeature.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_recycler_view.*
 
-class MainActivity : AppCompatActivity() {
-    private val redditPostAdapter = RedditPostAdapter()
-    lateinit var postViewModel: PostViewModel
+class PostsActivity : AppCompatActivity() {
+    private val redditPostAdapter = PostsAdapter()
+    lateinit var postViewModel: PostsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
+        postViewModel = ViewModelProvider(this).get(PostsViewModel::class.java)
         swipeToRefresh.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this, R.color.colorPrimary))
         swipeToRefresh.setColorSchemeColors(Color.WHITE)
 

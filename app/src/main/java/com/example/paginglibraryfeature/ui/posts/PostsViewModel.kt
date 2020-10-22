@@ -1,16 +1,15 @@
-package com.example.paginglibraryfeature.post_screen
+package com.example.paginglibraryfeature.ui.posts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.example.paginglibraryfeature.api_model.RedditPost
-import com.example.paginglibraryfeature.data_source.PostsDataSource
+import com.example.paginglibraryfeature.api.response.RedditResponse
 import kotlinx.coroutines.Dispatchers
 
-class PostViewModel: ViewModel() {
-    var postLiveData: LiveData<PagedList<RedditPost>>
+class PostsViewModel: ViewModel() {
+    var postLiveData: LiveData<PagedList<RedditResponse.Post>>
 
     init {
         val config = PagedList.Config.Builder()
@@ -23,9 +22,9 @@ class PostViewModel: ViewModel() {
 
 
     private fun initializedPagedListBuilder(config: PagedList.Config):
-            LivePagedListBuilder<String, RedditPost> {
-        val dataSourceFactory = object: DataSource.Factory<String, RedditPost>() {
-            override fun create(): DataSource<String, RedditPost> {
+            LivePagedListBuilder<String, RedditResponse.Post> {
+        val dataSourceFactory = object: DataSource.Factory<String, RedditResponse.Post>() {
+            override fun create(): DataSource<String, RedditResponse.Post> {
                 return PostsDataSource(Dispatchers.IO)
             }
         }

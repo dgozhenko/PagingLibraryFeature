@@ -1,6 +1,6 @@
-package com.example.paginglibraryfeature.api_data
+package com.example.paginglibraryfeature.api
 
-import com.example.paginglibraryfeature.api_model.RedditApiResponse
+import com.example.paginglibraryfeature.api.response.RedditResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +11,5 @@ interface ApiService {
         @Query("limit") loadSize: Int = 10,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null
-    ): Response<RedditApiResponse>
+    ): Response<RedditResponse>
 }

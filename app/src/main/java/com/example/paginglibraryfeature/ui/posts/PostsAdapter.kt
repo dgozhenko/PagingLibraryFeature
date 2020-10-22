@@ -1,17 +1,18 @@
-package com.example.paginglibraryfeature.post_screen
+package com.example.paginglibraryfeature.ui.posts
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.paginglibraryfeature.R
-import com.example.paginglibraryfeature.api_model.RedditPost
-import com.example.paginglibraryfeature.util.DiffUtilCallback
+import com.example.paginglibraryfeature.api.response.RedditResponse
 import kotlinx.android.synthetic.main.adapter_row.view.*
 
-class RedditPostAdapter: PagedListAdapter<RedditPost, RedditPostAdapter.PostViewHolder>(DiffUtilCallback()) {
-
+class PostsAdapter: PagedListAdapter<RedditResponse.Post, PostsAdapter.PostViewHolder>(
+    DiffUtilCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_row, parent, false)
@@ -29,12 +30,24 @@ class RedditPostAdapter: PagedListAdapter<RedditPost, RedditPostAdapter.PostView
         private val commentText = itemView.comments
         private val titleText = itemView.title
 
-        fun bindPost(redditPost: RedditPost) {
-            with(redditPost) {
+        fun bindPost(post: RedditResponse.Post) {
+            with(post) {
                 scoreText.text = score.toString()
                 commentText.text = commentCount.toString()
                 titleText.text = title
             }
         }
+    }
+
+    class DiffUtilCallback: DiffUtil.ItemCallback<RedditResponse.Post>() {
+        override fun areItemsTheSame(oldItem: RedditResponse.Post, newItem: RedditResponse.Post): Boolean {
+            return oldItem.key == newItem.key
+        }
+
+        override fun areContentsTheSame(oldItem: RedditResponse.Post, newItem: RedditResponse.Post): Boolean {
+            return oldItem.title == newItem.title && oldItem.score == newItem.score
+                    && oldItem.commentCount == newItem.commentCount
+        }
+
     }
 }
